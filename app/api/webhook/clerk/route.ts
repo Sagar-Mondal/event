@@ -55,11 +55,11 @@ export async function POST(req: Request) {
   const eventType = evt.type;
  
   if(eventType === 'user.created') {
-    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
+    const { id, email_address, image_url, first_name, last_name, username } = evt.data.external_accounts[0];
 
     const user = {
       clerkId: id,
-      email: email_addresses[0].email_address,
+      email: email_address,
       username: username!,
       firstName: first_name,
       lastName: last_name,
